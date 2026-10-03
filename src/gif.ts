@@ -116,7 +116,7 @@ function headerSvg(o: GifInput, stageIdx: number): string {
     !o.won && stageIdx === total - 1 ? "X/10" : `${stageIdx + 1}/10`;
   return (
     `<text x="${PAD}" y="${PAD + 36}" font-family="${FONT}" font-size="26" font-weight="800" fill="${C_TEXT}">` +
-    `Weavle ${o.puzzleNumber}</text>` +
+    `Griddle ${o.puzzleNumber}</text>` +
     `<text x="${GIF_W - PAD}" y="${PAD + 36}" text-anchor="end" font-family="${FONT}" font-size="22" font-weight="700" fill="${C_DIM}">` +
     `${counter}</text>`
   );
@@ -229,12 +229,12 @@ export async function buildAndShareGif(o: GifInput): Promise<"shared" | "downloa
     raw.push({ rgba: await rasterizeSvg(f.svg), width: GIF_W, height: GIF_H, delayMs: f.delayMs });
   }
   const bytes = encodeGif(raw);
-  const file = new File([bytes as unknown as BlobPart], `weavle-${o.puzzleNumber}.gif`, {
+  const file = new File([bytes as unknown as BlobPart], `griddle-${o.puzzleNumber}.gif`, {
     type: "image/gif",
   });
   const text = share(o.puzzleNumber, o.won, o.guesses, o.answers, o.puzzle);
   if (typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
-    await navigator.share({ files: [file], title: "Weavle", text });
+    await navigator.share({ files: [file], title: "Griddle", text });
     return "shared";
   }
   const a = document.createElement("a");

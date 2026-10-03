@@ -32,13 +32,13 @@ describe("gif share", () => {
         expect(f.svg.toLowerCase().includes(w)).toBe(false);
       }
     }
-    expect(frames[0].svg).toContain("Weavle 1");
+    expect(frames[0].svg).toContain("Griddle 1");
   });
 
   it("ticks the n/10 counter up through the stages", () => {
     const guesses = ["crane", "slate"];
     const frames = buildGifFrames({ puzzleNumber: 3, guesses, answers, puzzle, won: true });
-    expect(frames[0].svg).toContain("Weavle 3");
+    expect(frames[0].svg).toContain("Griddle 3");
     expect(frames[0].svg).toContain("1/10");
     // stage 2 hold starts after 5 hold + 5 swipe frames
     expect(frames[10].svg).toContain("2/10");
